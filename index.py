@@ -118,11 +118,11 @@ if __name__ == "__main__":
     components_bfs = graph.find_connected_components()
     components_dfs = graph.depth_first_search()
 
-    print("Connected Components (Breadth-First Search):")
+    print("Componentes Conexas (Busca em Largura):")
     for i, component in enumerate(components_bfs):
         print(f"Component {i + 1}: {component}")
 
-    print("\nConnected Components (Depth-First Search):")
+    print("\nComponentes Conexas (Busca em Profundidade):")
     for i, component in enumerate(components_dfs):
         print(f"Component {i + 1}: {component}")
 
