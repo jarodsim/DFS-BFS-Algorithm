@@ -1,3 +1,5 @@
+import sys
+
 class Graph:
     def __init__(self):
         self.graph = {}
@@ -74,23 +76,55 @@ class Graph:
         return components
 
 
-if __name__ == "__main__":
+def read_graph_from_file(file_path):
     graph = Graph()
-    graph.add_edge("A", "B")
-    graph.add_edge("B", "C")
-    graph.add_edge("D", "E")
-    graph.add_edge("F", "G")
+    
+    with open(file_path, 'r') as file:
+        num_vertices = int(file.readline().strip())
+        vertices = file.readline().strip().split()
+        num_edges = int(file.readline().strip())
+        
+        for vertex in vertices:
+            graph.add_vertex(vertex)
+        
+        for _ in range(num_edges):
+            source, destination = file.readline().strip().split()
+            graph.add_edge(source, destination)
+    
+    return graph
+
+def read_graph_from_file(file_path):
+    graph = Graph()
+    
+    with open(file_path, 'r') as file:
+        num_vertices = int(file.readline().strip())
+        vertices = file.readline().strip().split()
+        num_edges = int(file.readline().strip())
+        
+        for vertex in vertices:
+            graph.add_vertex(vertex)
+        
+        for _ in range(num_edges):
+            source, destination = file.readline().strip().split()
+            graph.add_edge(source, destination)
+    
+    return graph
+
+if __name__ == "__main__":
+    file_path = sys.argv[1]
+    
+    graph = read_graph_from_file(file_path)
 
     components_bfs = graph.find_connected_components()
-    components_dfs = graph.depth_first_search("A")
+    components_dfs = graph.depth_first_search()
 
-    print("Componentes Conexas (Busca em Largura):")
+    print("Connected Components (Breadth-First Search):")
     for i, component in enumerate(components_bfs):
         print(f"Component {i + 1}: {component}")
 
-    print("\nComponentes Conexas (Busca em Profundidade):")
+    print("\nConnected Components (Depth-First Search):")
     for i, component in enumerate(components_dfs):
-        print(f"Componente {i + 1}: {component}")
+        print(f"Component {i + 1}: {component}")
 
     count_bfs = len(components_bfs)
     count_dfs = len(components_dfs)
