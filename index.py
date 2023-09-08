@@ -38,7 +38,7 @@ class Graph:
 
         return component
 
-    def depth_first_search(self, initial_vertex):
+    def depth_first_search(self):
         visited = set()
         connected_components = []
 
